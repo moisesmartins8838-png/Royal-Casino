@@ -1,0 +1,1685 @@
+
+/* ==================================================
+   PERFIL DO USUÁRIO
+================================================== */
+
+.profile-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 150px;
+}
+
+.profile-avatar,
+.bank-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255,255,255,.22);
+    background: #161b25;
+    box-shadow: 0 0 18px rgba(0,0,0,.25);
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+}
+
+.profile-info span,
+.bank-user small {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    opacity: .65;
+}
+
+.profile-info strong,
+.bank-user strong {
+    font-size: 14px;
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.bank-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 14px 0 16px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.bank-avatar {
+    width: 48px;
+    height: 48px;
+}
+
+.bank-user div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.profile-preview {
+    width: 72px;
+    height: 72px;
+    margin: 8px auto 14px;
+}
+
+.profile-preview img {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,.2);
+}
+
+#registerPhoto {
+    cursor: pointer;
+}
+
+@media (max-width: 700px) {
+    .profile-area {
+        min-width: 0;
+    }
+    .profile-info {
+        display: none;
+    }
+    .profile-avatar {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+
+/* =========================================================
+   ROYAL CASINO — BASE / HOME / JOGOS
+   ========================================================= */
+* { box-sizing: border-box; }
+html, body { width:100%; min-height:100%; margin:0; }
+body {
+    min-height:100vh;
+    overflow-x:hidden;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#090202;
+}
+button, input { font:inherit; }
+button { -webkit-tap-highlight-color:transparent; }
+
+.casino-home {
+    position:fixed; inset:0; min-height:100vh; overflow:hidden;
+    background:
+      radial-gradient(circle at 50% 35%, rgba(135,0,0,.72), transparent 45%),
+      radial-gradient(circle at 50% 100%, rgba(255,155,0,.08), transparent 35%),
+      linear-gradient(145deg,#1b0000 0%,#090202 58%,#020202 100%);
+    color:#fff; z-index:10;
+}
+.hero {
+    position:relative; z-index:5; min-height:100vh;
+    display:flex; flex-direction:column; align-items:center;
+    justify-content:center; text-align:center; padding:30px;
+}
+.online {
+    padding:7px 15px; border:1px solid rgba(255,195,70,.45);
+    border-radius:999px; background:rgba(255,176,25,.08);
+    color:#ffc13b; font-size:10px; font-weight:800; letter-spacing:3px;
+}
+.hero h1 {
+    margin:18px 0 0; color:#fff;
+    font-size:clamp(52px,10vw,110px); line-height:.9;
+    letter-spacing:9px; font-weight:950;
+    text-shadow:0 5px 0 rgba(100,0,0,.8),0 15px 45px rgba(0,0,0,.7);
+}
+.linha {
+    width:min(320px,60vw); height:1px; margin:25px auto 32px;
+    background:linear-gradient(90deg,transparent,#d9a43b,transparent);
+}
+.play-wrapper { position:relative; display:flex; flex-direction:column; align-items:center; }
+#playButton {
+    min-width:190px; padding:16px 40px; border:1px solid #ffd36a;
+    border-radius:999px; background:linear-gradient(180deg,#ffc54a,#e57a00);
+    color:#fff; font-size:15px; font-weight:900; letter-spacing:2px;
+    cursor:pointer; box-shadow:0 12px 35px rgba(0,0,0,.45);
+    transition:transform .2s,box-shadow .2s,filter .2s;
+}
+#playButton:hover { transform:translateY(-3px) scale(1.03); filter:brightness(1.08); }
+.age-warning {
+    position:absolute; top:calc(100% + 15px); width:max-content; max-width:280px;
+    padding:9px 12px; border-radius:9px; background:rgba(0,0,0,.86);
+    color:#d5d5d5; font-size:11px; line-height:1.4; opacity:0;
+    pointer-events:none; transform:translateY(-5px);
+    transition:opacity .2s,transform .2s;
+}
+.play-wrapper:hover .age-warning { opacity:1; transform:translateY(0); }
+
+#chips-container {
+    position:absolute; inset:0; z-index:1; overflow:hidden; pointer-events:none;
+}
+.chip {
+    position:absolute; top:-80px; border-radius:50%; border:5px dashed rgba(255,255,255,.72);
+    background:radial-gradient(circle,#9b0000 0 35%,#e0a52c 36% 48%,#7d0000 49% 100%);
+    box-shadow:0 5px 12px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.22);
+    animation-name:chipFall; animation-timing-function:linear; animation-iteration-count:infinite;
+}
+@keyframes chipFall {
+    0% { transform:translate3d(0,-100px,0) rotate(0deg); opacity:0; }
+    8% { opacity:.9; }
+    100% { transform:translate3d(80px,calc(100vh + 150px),0) rotate(720deg); opacity:.08; }
+}
+
+.game-screen {
+    position:fixed; inset:0; z-index:20; display:none; min-height:100vh;
+    overflow-y:auto;
+    background:radial-gradient(circle at 50% 0%,rgba(116,0,0,.32),transparent 40%),#090909;
+    color:#fff;
+}
+.game-screen.active { display:block; }
+.game-header {
+    position:sticky; top:0; z-index:30; min-height:72px; padding:0 30px;
+    display:flex; align-items:center; gap:15px;
+    background:rgba(10,5,5,.9); border-bottom:1px solid rgba(255,190,50,.12);
+    backdrop-filter:blur(12px);
+}
+.game-header .logo, .logo {
+    margin-right:auto; color:#ffc13b; font-size:21px; font-weight:900; letter-spacing:4px;
+}
+.game-header .logo span, .logo span { color:#fff; }
+.balance {
+    display:flex; flex-direction:column; align-items:flex-end; gap:2px;
+    padding:9px 15px; border:1px solid rgba(255,190,50,.25); border-radius:14px;
+    background:rgba(255,255,255,.045); color:#fff; cursor:pointer;
+}
+.balance span { color:#999; font-size:9px; letter-spacing:1px; }
+.balance strong { color:#ffc13b; font-size:15px; }
+.games { width:min(1100px,calc(100% - 40px)); margin:0 auto; padding:70px 0 110px; }
+.games h2 { margin:0 0 30px; text-align:center; font-size:clamp(22px,4vw,34px); letter-spacing:3px; }
+.game-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; }
+.game-card {
+    min-height:190px; padding:25px 18px; display:flex; flex-direction:column;
+    justify-content:center; align-items:center; gap:8px;
+    border:1px solid rgba(255,190,50,.13); border-radius:22px;
+    background:linear-gradient(145deg,rgba(110,0,0,.45),rgba(30,8,8,.9));
+    color:#fff; cursor:pointer; box-shadow:0 18px 45px rgba(0,0,0,.25);
+    transition:transform .22s,border-color .22s,box-shadow .22s;
+}
+.game-card:hover { transform:translateY(-6px); border-color:rgba(255,190,50,.55); }
+.game-card span { font-size:52px; }
+.game-card strong { color:#ffc13b; letter-spacing:2px; }
+.game-card small { color:#999; }
+.back-button {
+    position:fixed; left:25px; bottom:25px; z-index:40; padding:11px 17px;
+    border:1px solid rgba(255,255,255,.12); border-radius:999px;
+    background:rgba(20,10,10,.9); color:#ddd; cursor:pointer;
+}
+@media (max-width:800px) { .game-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:550px) {
+    .hero h1 { letter-spacing:4px; }
+    .games { width:min(calc(100% - 24px),1100px); padding-top:45px; }
+    .game-grid { grid-template-columns:1fr; }
+    .game-card { min-height:145px; }
+    .game-header { padding:0 12px; }
+}
+
+
+/* ==================================================
+   LOGIN
+================================================== */
+
+.login-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+
+        radial-gradient(
+            circle at top,
+            #6f0000,
+            #180000 75%
+        );
+
+}
+
+
+.login-box {
+
+    width: 390px;
+
+    padding: 40px;
+
+    border-radius: 25px;
+
+    background:
+
+        rgba(20, 5, 5, .96);
+
+    border:
+
+        1px solid
+        rgba(255, 190, 50, .3);
+
+    box-shadow:
+
+        0 30px 80px
+        rgba(0,0,0,.65);
+
+    color: white;
+
+}
+
+
+.login-logo {
+
+    text-align: center;
+
+    color: #ffc13b;
+
+    font-size: 30px;
+
+    font-weight: 900;
+
+    letter-spacing: 4px;
+
+}
+
+
+.login-logo span {
+
+    color: white;
+
+}
+
+
+.simulation-label {
+
+    text-align: center;
+
+    color: #999;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    margin: 8px 0 30px;
+
+}
+
+
+.login-box h2 {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+}
+
+
+.login-box label {
+
+    display: block;
+
+    margin:
+
+        15px 0 7px;
+
+    color: #bbb;
+
+    font-size: 13px;
+
+}
+
+
+.login-box input {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border-radius: 10px;
+
+    border:
+
+        1px solid
+        rgba(255,255,255,.1);
+
+    outline: none;
+
+    background: #100909;
+
+    color: white;
+
+}
+
+
+.login-box input:focus {
+
+    border-color: #ffb52b;
+
+}
+
+
+.login-box > div button:not(.register-text button) {
+
+    width: 100%;
+
+    margin-top: 22px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #ffb52b,
+            #ff7900
+        );
+
+    color: white;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+}
+
+
+#registerButton,
+#loginButton {
+
+    width: 100%;
+
+    margin-top: 22px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #ffb52b,
+            #ff7900
+        );
+
+    color: white;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+}
+
+
+.register-text {
+
+    text-align: center;
+
+    color: #888;
+
+    font-size: 12px;
+
+    margin-top: 25px;
+
+}
+
+
+.register-text button {
+
+    border: none;
+
+    background: none;
+
+    color: #ffbd3b;
+
+    cursor: pointer;
+
+}
+
+
+.login-error {
+
+    color: #ff7070;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    margin-top: 10px;
+
+}
+
+
+.hidden {
+
+    display: none !important;
+
+}
+
+
+
+/* ==================================================
+   SALDO CLICÁVEL
+================================================== */
+
+.balance {
+
+    border: none;
+
+    cursor: pointer;
+
+}
+
+
+
+/* ==================================================
+   LOGOUT
+================================================== */
+
+.logout-button {
+
+    border:
+
+        1px solid
+        rgba(255,255,255,.2);
+
+    background:
+
+        rgba(255,255,255,.05);
+
+    color: #ddd;
+
+    padding: 9px 15px;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+}
+
+
+
+/* ==================================================
+   MODAIS
+================================================== */
+
+.modal-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 500;
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    background:
+
+        rgba(0,0,0,.75);
+
+    backdrop-filter:
+        blur(7px);
+
+}
+
+
+.modal-overlay.active {
+
+    display: flex;
+
+}
+
+
+
+/* ==================================================
+   JANELA DO BANCO
+================================================== */
+
+.bank-window {
+
+    width: 460px;
+
+    max-height: 92vh;
+
+    overflow-y: auto;
+
+    padding: 30px;
+
+    position: relative;
+
+    border-radius: 28px;
+
+    background: #f4f6fa;
+
+    color: #59616c;
+
+    box-shadow:
+
+        0 30px 80px
+        rgba(0,0,0,.5);
+
+}
+
+
+.close-button {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 18px;
+
+    width: 35px;
+
+    height: 35px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #e7e9ee;
+
+    color: #777;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+}
+
+
+.bank-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.bank-title > span {
+
+    width: 45px;
+
+    height: 45px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 14px;
+
+    background: #e7e8fc;
+
+    font-size: 22px;
+
+}
+
+
+.bank-title strong {
+
+    display: block;
+
+    color: #535b67;
+
+    letter-spacing: 2px;
+
+}
+
+
+.bank-title small {
+
+    display: block;
+
+    color: #999;
+
+    font-size: 9px;
+
+    margin-top: 3px;
+
+    letter-spacing: 1px;
+
+}
+
+
+
+/* ==================================================
+   CARTÃO BANCÁRIO
+================================================== */
+
+.bank-card {
+
+    min-height: 185px;
+
+    padding: 23px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #6664ee,
+            #8588f7
+        );
+
+    color: white;
+
+    box-shadow:
+
+        0 15px 30px
+        rgba(90,90,220,.3);
+
+}
+
+
+.bank-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+
+    height: 200px;
+
+    border-radius: 50%;
+
+    right: -80px;
+
+    top: -80px;
+
+    background:
+
+        rgba(255,255,255,.08);
+
+}
+
+
+.bank-card-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.bank-card-chip {
+
+    margin-top: 20px;
+
+    font-size: 30px;
+
+}
+
+
+.bank-card-number {
+
+    letter-spacing: 3px;
+
+    font-size: 13px;
+
+}
+
+
+.bank-card > strong {
+
+    display: block;
+
+    font-size: 25px;
+
+    margin-top: 6px;
+
+}
+
+
+.bank-card-bottom {
+
+    position: absolute;
+
+    bottom: 15px;
+
+    left: 23px;
+
+    right: 23px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 8px;
+
+    opacity: .8;
+
+}
+
+
+
+/* ==================================================
+   SALDOS
+================================================== */
+
+.bank-balances {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    margin-top: 18px;
+
+}
+
+
+.bank-balances > div {
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    background: #eef0f5;
+
+    box-shadow:
+
+        inset 2px 2px 5px
+        rgba(180,185,195,.2);
+
+}
+
+
+.bank-balances small {
+
+    display: block;
+
+    color: #999;
+
+    font-size: 10px;
+
+}
+
+
+.bank-balances strong {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: #555d68;
+
+    font-size: 17px;
+
+}
+
+
+
+/* ==================================================
+   TRANSFERÊNCIA
+================================================== */
+
+.transfer-section {
+
+    margin-top: 25px;
+
+}
+
+
+.transfer-section h3 {
+
+    color: #555d68;
+
+}
+
+
+.transfer-section p {
+
+    font-size: 11px;
+
+    color: #999;
+
+    line-height: 1.5;
+
+    margin-top: 5px;
+
+}
+
+
+.amount-buttons {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 15px;
+
+}
+
+
+.amount-button {
+
+    flex: 1;
+
+    padding: 13px 5px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #f7f8fb;
+
+    color: #666bef;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+
+        4px 4px 10px
+        rgba(180,185,195,.3),
+
+        -4px -4px 10px
+        white;
+
+}
+
+
+.amount-button.selected {
+
+    background: #6c6df2;
+
+    color: white;
+
+}
+
+
+.transfer-button {
+
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #6262ee,
+            #797cf7
+        );
+
+    color: white;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+}
+
+
+.transfer-message {
+
+    text-align: center;
+
+    color: #55aa80 !important;
+
+    font-weight: bold;
+
+}
+
+
+
+/* ==================================================
+   DEPÓSITO CASSINO -> BANCO
+================================================== */
+
+.deposit-section {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eceef4;
+}
+
+.deposit-section h3 {
+    color: #555d68;
+    margin-bottom: 0;
+}
+
+.deposit-section p {
+    font-size: 11px;
+    color: #999;
+    line-height: 1.5;
+    margin-top: 5px;
+}
+
+.deposit-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.deposit-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 15px;
+    border: 1px solid #e2e5ec;
+    border-radius: 12px;
+    background: #f7f8fb;
+    color: #444;
+    font-weight: 700;
+    outline: none;
+}
+
+.deposit-input:focus {
+    border-color: #6c6df2;
+}
+
+.deposit-section .transfer-button {
+    margin-top: 0;
+}
+
+
+/* ==================================================
+   HISTÓRICO
+================================================== */
+
+.history {
+
+    margin-top: 28px;
+
+}
+
+
+.history h3 {
+
+    font-size: 15px;
+
+    color: #5b636e;
+
+}
+
+
+.history-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 0;
+
+    border-bottom:
+        1px solid #e4e6eb;
+
+}
+
+
+.history-icon {
+
+    width: 35px;
+
+    height: 35px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 10px;
+
+    background: #e6f6ed;
+
+    color: #50a878;
+
+}
+
+
+.history-item div:nth-child(2) {
+
+    flex: 1;
+
+}
+
+
+.history-item strong {
+
+    display: block;
+
+    font-size: 11px;
+
+}
+
+
+.history-item small {
+
+    color: #999;
+
+    font-size: 9px;
+
+}
+
+
+.history-item > strong {
+
+    color: #d66b6b;
+
+    font-size: 11px;
+
+}
+
+
+.empty-history {
+
+    color: #aaa;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    padding: 15px;
+
+}
+
+
+
+/* ==================================================
+   COMPROVANTE
+================================================== */
+
+.receipt {
+
+    width: 400px;
+
+    padding: 35px;
+
+    position: relative;
+
+    border-radius: 25px;
+
+    background: white;
+
+    color: #555d68;
+
+    box-shadow:
+
+        0 30px 80px
+        rgba(0,0,0,.5);
+
+}
+
+
+.receipt-icon {
+
+    width: 65px;
+
+    height: 65px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: #e6f6ed;
+
+    color: #48aa76;
+
+    font-size: 35px;
+
+    font-weight: bold;
+
+}
+
+
+.receipt h2 {
+
+    text-align: center;
+
+    font-size: 20px;
+
+}
+
+
+.receipt-subtitle {
+
+    text-align: center;
+
+    color: #999;
+
+    font-size: 11px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.receipt-line {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 13px 0;
+
+    border-bottom:
+        1px solid #eee;
+
+    font-size: 12px;
+
+}
+
+
+.receipt-line span {
+
+    color: #999;
+
+}
+
+
+.status-ok {
+
+    color: #49a877;
+
+}
+
+
+.simulation-warning {
+
+    margin-top: 20px;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    background: #fff5df;
+
+    color: #ad7c27;
+
+    text-align: center;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+}
+
+
+
+/* ==================================================
+   RESPONSIVO
+================================================== */
+
+@media (max-width: 550px) {
+
+    .bank-window,
+    .receipt,
+    .login-box {
+
+        width: 100%;
+
+        max-width: 390px;
+
+        padding: 25px;
+
+    }
+
+
+    .game-header {
+
+        padding: 0 12px;
+
+    }
+
+
+    .game-header .logo {
+
+        font-size: 16px;
+
+    }
+
+
+    .logout-button {
+
+        display: none;
+
+    }
+
+}
+/* ==================================================
+   PERFIL DO JOGADOR
+================================================== */
+
+.player-profile,
+.bank-user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.player-profile {
+    margin-right: auto;
+}
+
+.profile-avatar {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #c89b3c, #6f4d17);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+    border: 2px solid rgba(255, 255, 255, .7);
+    box-shadow: 0 4px 16px rgba(0,0,0,.25);
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+}
+
+.profile-info span,
+.bank-user-profile small {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: .65;
+}
+
+.profile-info strong {
+    font-size: 14px;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.bank-user-profile {
+    margin: 14px 0 16px;
+    padding: 11px 13px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.06);
+}
+
+.bank-user-profile > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.bank-user-profile strong {
+    font-size: 14px;
+}
+
+.bank-card-holder {
+    display: flex;
+    flex-direction: column;
+    margin: 13px 0 5px;
+}
+
+.bank-card-holder small {
+    font-size: 8px;
+    opacity: .65;
+    letter-spacing: 1px;
+}
+
+.bank-card-holder strong {
+    font-size: 12px;
+    letter-spacing: 1px;
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.optional-label {
+    opacity: .55;
+    font-size: 10px;
+}
+
+.profile-photo-input {
+    padding: 10px !important;
+    cursor: pointer;
+}
+
+.photo-preview-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: -3px 0 13px;
+    font-size: 10px;
+    opacity: .75;
+}
+
+.profile-avatar-preview {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    font-size: 15px;
+}
+
+@media (max-width: 650px) {
+    .player-profile {
+        margin-right: 8px;
+    }
+
+    .profile-info {
+        display: none;
+    }
+
+    .profile-avatar {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+    }
+}
+
+/* ==================================================
+   JOGOS — DADOS 3D + ROLETA
+================================================== */
+.game-card { cursor: pointer; }
+.game-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(3, 5, 10, .82);
+    backdrop-filter: blur(12px);
+}
+.game-modal-overlay.active { display: flex; animation: gameOverlayIn .22s ease; }
+@keyframes gameOverlayIn { from { opacity: 0; } to { opacity: 1; } }
+.casino-game-window {
+    width: min(720px, 100%);
+    max-height: 92vh;
+    overflow-y: auto;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 26px;
+    padding: 28px;
+    background: radial-gradient(circle at top, rgba(180,145,70,.13), transparent 38%), #0b0e14;
+    box-shadow: 0 30px 90px rgba(0,0,0,.65), inset 0 1px rgba(255,255,255,.05);
+    position: relative;
+}
+.game-modal-title { display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+.game-modal-icon { font-size:34px; }
+.game-modal-title strong { display:block; font-size:22px; letter-spacing:2px; }
+.game-modal-title small { display:block; color:#89909d; margin-top:3px; }
+.dice-stage {
+    height: 260px;
+    border-radius: 20px;
+    margin: 10px 0 20px;
+    display:flex; align-items:center; justify-content:center;
+    background: radial-gradient(circle, rgba(255,255,255,.08), transparent 45%), linear-gradient(145deg,#151a23,#080a0e);
+    border:1px solid rgba(255,255,255,.08);
+    perspective: 900px;
+    overflow:hidden;
+}
+.dice-scene { width:120px; height:120px; perspective:700px; }
+.dice-cube { width:100%; height:100%; position:relative; transform-style:preserve-3d; transform:rotateX(-20deg) rotateY(35deg); }
+.dice-cube.rolling { animation:diceRoll 1.25s cubic-bezier(.15,.8,.25,1); }
+@keyframes diceRoll {
+    0% { transform:rotateX(-20deg) rotateY(35deg) rotateZ(0); }
+    35% { transform:rotateX(360deg) rotateY(720deg) rotateZ(80deg); }
+    70% { transform:rotateX(690deg) rotateY(1110deg) rotateZ(170deg); }
+    100% { transform:rotateX(720deg) rotateY(1080deg) rotateZ(180deg); }
+}
+.dice-face {
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    border-radius:18px; border:2px solid rgba(255,255,255,.25);
+    background:linear-gradient(145deg,#f5f5f5,#bfc5ce); color:#171a20;
+    font-size:54px; font-weight:900; box-shadow:inset 0 0 25px rgba(0,0,0,.15),0 0 18px rgba(255,255,255,.06);
+    backface-visibility:hidden;
+}
+.dice-front { transform:translateZ(60px); }
+.dice-back { transform:rotateY(180deg) translateZ(60px); }
+.dice-right { transform:rotateY(90deg) translateZ(60px); }
+.dice-left { transform:rotateY(-90deg) translateZ(60px); }
+.dice-top { transform:rotateX(90deg) translateZ(60px); }
+.dice-bottom { transform:rotateX(-90deg) translateZ(60px); }
+.dice-choice-title,.bet-label { color:#7e8795; font-size:11px; font-weight:800; letter-spacing:1.5px; margin:14px 0 9px; }
+.dice-choice-grid,.roulette-choice-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+.dice-number-grid { grid-template-columns:repeat(6,1fr); }
+.dice-parity-grid { margin-top:10px; }
+.dice-choice,.roulette-choice,.bet-option {
+    border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:12px;
+    background:#11151d; color:#dfe4ec; font-weight:800; cursor:pointer; transition:.18s;
+}
+.dice-choice:hover,.roulette-choice:hover,.bet-option:hover { transform:translateY(-2px); border-color:rgba(255,255,255,.28); }
+.dice-choice.active,.roulette-choice.active,.bet-option.selected { border-color:#d4af5b; background:linear-gradient(145deg,rgba(212,175,91,.2),rgba(212,175,91,.06)); box-shadow:0 0 20px rgba(212,175,91,.12); }
+.bet-options { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+.primary-game-button { width:100%; margin-top:16px; padding:15px; border:0; border-radius:14px; cursor:pointer; font-weight:900; letter-spacing:1.4px; color:#111; background:linear-gradient(135deg,#f1d28a,#b98b38); box-shadow:0 10px 25px rgba(190,145,55,.2); }
+.primary-game-button:disabled { opacity:.5; cursor:not-allowed; }
+.game-result-message { min-height:24px; text-align:center; margin-top:13px; color:#aeb6c4; font-weight:700; }
+.game-result-message.win { color:#75e0a0; }
+.game-result-message.loss { color:#f17b7b; }
+
+/* ROleta */
+.roulette-stage { height:280px; display:flex; justify-content:center; align-items:center; overflow:hidden; position:relative; }
+.roulette-wheel {
+    width:210px; height:210px; border-radius:50%; position:relative;
+    border:12px solid #d1a84f;
+    background:conic-gradient(#111 0 10%, #b21e2b 10% 20%, #111 20% 30%, #b21e2b 30% 40%, #111 40% 50%, #b21e2b 50% 60%, #111 60% 70%, #b21e2b 70% 80%, #111 80% 90%, #19894b 90% 100%);
+    box-shadow:0 0 0 5px #282014,0 18px 45px rgba(0,0,0,.6),inset 0 0 25px rgba(0,0,0,.8);
+}
+.roulette-wheel.spinning { animation:rouletteSpin var(--roulette-duration, 12.6s) cubic-bezier(.08,.55,.12,1) forwards; }
+@keyframes rouletteSpin { from{transform:rotate(0)} to{transform:rotate(var(--roulette-end, 1440deg))} }
+.roulette-inner { position:absolute; inset:25px; border-radius:50%; border:2px solid rgba(255,255,255,.3); display:flex; align-items:center; justify-content:center; background:#17120c; }
+.roulette-center { width:64px; height:64px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#e6c773; font-size:11px; font-weight:900; letter-spacing:1px; border:2px solid #c49b47; background:#0b0c10; }
+.roulette-pointer { position:absolute; top:8px; left:50%; transform:translateX(-50%); z-index:10; color:#e4c16a; font-size:32px; line-height:1; text-shadow:0 2px 6px #000, 0 0 10px rgba(228,193,106,.35); pointer-events:none; }
+.roulette-info { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; color:#8f98a6; font-size:11px; margin-bottom:8px; }
+.roulette-info strong { color:#e3c36d; }
+.roulette-choice-grid { grid-template-columns:repeat(3,1fr); }
+.roulette-choice small { display:block; margin-top:4px; opacity:.7; }
+.roulette-choice.black { background:linear-gradient(145deg,#181b20,#090a0d); }
+.roulette-choice.red { background:linear-gradient(145deg,#44141a,#1a0c0e); }
+.roulette-choice.green { background:linear-gradient(145deg,#123d29,#0a1710); }
+
+@media (max-width:650px) {
+    .casino-game-window { padding:20px; border-radius:20px; }
+    .bet-options { grid-template-columns:repeat(3,1fr); }
+    .roulette-choice-grid { grid-template-columns:1fr; }
+    .dice-choice-grid { grid-template-columns:1fr 1fr; }
+    .dice-number-grid { grid-template-columns:repeat(3,1fr); }
+    .dice-stage { height:220px; }
+}
+
+
+/* ==================================================
+   PAINEL ADMINISTRATIVO — SIMULAÇÃO
+================================================== */
+.admin-panel {
+    position: fixed; inset: 0; z-index: 2000; display: none; overflow-y: auto;
+    background: radial-gradient(circle at 50% 0%, rgba(115,0,0,.28), transparent 38%), #070809; color:#fff;
+}
+.admin-panel.active { display:block; }
+.admin-header {
+    position: sticky; top:0; z-index:5; display:flex; align-items:center; gap:20px; justify-content:space-between;
+    padding:24px clamp(18px,5vw,70px); background:rgba(7,8,9,.88); backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(255,190,50,.14);
+}
+.admin-kicker { color:#ffc13b; font-size:10px; font-weight:900; letter-spacing:3px; }
+.admin-header h1 { margin:5px 0; font-size:clamp(28px,5vw,44px); letter-spacing:2px; }
+.admin-header p { margin:0; color:#8d9198; font-size:11px; letter-spacing:1.5px; }
+.admin-logout { padding:10px 17px; border-radius:999px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.05); color:#ddd; cursor:pointer; }
+.admin-content { width:min(1120px, calc(100% - 28px)); margin:auto; padding:35px 0 70px; }
+.admin-balance-card { padding:30px; border-radius:24px; background:linear-gradient(135deg,rgba(112,0,0,.7),rgba(35,10,10,.8)); border:1px solid rgba(255,190,50,.2); box-shadow:0 22px 60px rgba(0,0,0,.35); }
+.admin-balance-card span { color:#aaa; font-size:12px; letter-spacing:1.5px; }
+.admin-balance-card strong { display:block; margin:8px 0; color:#ffc13b; font-size:clamp(34px,7vw,58px); }
+.admin-balance-card small { color:#888; }
+.admin-stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:15px; margin:18px 0; }
+.admin-stat { padding:22px; border:1px solid rgba(255,255,255,.08); border-radius:18px; background:rgba(255,255,255,.035); }
+.admin-stat span { display:block; color:#8d9198; font-size:11px; margin-bottom:8px; }
+.admin-stat strong { font-size:22px; color:#eee; }
+.admin-section { margin-top:18px; padding:25px; border:1px solid rgba(255,255,255,.08); border-radius:20px; background:rgba(255,255,255,.025); }
+.admin-section-title { display:flex; justify-content:space-between; align-items:center; gap:15px; }
+.admin-section-title span { color:#ffc13b; font-size:9px; letter-spacing:2px; font-weight:900; }
+.admin-section-title h2 { margin:5px 0 0; font-size:22px; }
+.admin-section-title > strong { color:#ffc13b; font-size:22px; }
+.admin-section p { color:#92969e; line-height:1.6; font-size:13px; }
+.admin-transactions { display:flex; flex-direction:column; gap:9px; margin-top:15px; }
+.admin-transaction { display:flex; justify-content:space-between; align-items:center; gap:15px; padding:15px; border-radius:14px; background:rgba(0,0,0,.25); border:1px solid rgba(255,255,255,.055); }
+.admin-transaction > div:first-child { display:flex; flex-direction:column; gap:4px; }
+.admin-transaction span { color:#7f848c; font-size:11px; }
+.admin-transaction-values { text-align:right; display:flex; flex-direction:column; gap:4px; }
+.admin-transaction-values strong { color:#ff7676; }
+.admin-transaction-values span { color:#6ee09a; }
+.admin-empty { padding:30px; text-align:center; color:#777; border:1px dashed rgba(255,255,255,.1); border-radius:14px; }
+.admin-warning { margin-top:18px; padding:13px; border-radius:12px; text-align:center; color:#8f9297; background:rgba(255,190,50,.035); border:1px solid rgba(255,190,50,.08); font-size:10px; letter-spacing:1px; }
+@media(max-width:800px){ .admin-stats-grid{grid-template-columns:repeat(2,1fr);} .admin-header{padding:18px;} }
+@media(max-width:500px){ .admin-stats-grid{grid-template-columns:1fr;} .admin-transaction{align-items:flex-start; flex-direction:column;} .admin-transaction-values{text-align:left;} }
+
+
+/* ==================================================
+   DEPÓSITO CASSINO -> BLOCKBANK (DESTAQUE)
+================================================== */
+.deposit-highlight {
+    margin: 22px 0 24px;
+    padding: 18px;
+    border: 1px solid #dfe2ff;
+    border-radius: 18px;
+    background: linear-gradient(180deg, #f7f7ff 0%, #ffffff 100%);
+    box-shadow: 0 8px 24px rgba(80, 82, 180, .08);
+}
+.deposit-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.deposit-heading h3 { margin: 0 0 3px; }
+.deposit-heading p { margin: 0; }
+.deposit-icon {
+    width: 42px; height: 42px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    background: #e7e8fc; color: #5d5fd0; font-size: 24px; font-weight: 900;
+}
+.deposit-rule {
+    margin-top: 14px; padding: 10px 12px; border-radius: 10px;
+    background: #fff4df; color: #8a641f; display: flex;
+    justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 12px;
+}
+.deposit-rule strong { font-size: 13px; }
+.deposit-button { width: 100%; }
+@media (max-width: 600px) {
+    .deposit-rule { flex-direction: column; }
+}
+
+/* ==================================================
+   BLACKJACK 21 — MESA REALISTA
+================================================== */
+.blackjack-window { width:min(900px,100%); }
+.blackjack-table {
+    position:relative; min-height:455px; overflow:hidden; border-radius:28px; margin:12px 0 16px;
+    padding:30px 34px 28px;
+    background:radial-gradient(circle at 50% 48%,rgba(255,255,255,.08),transparent 30%),radial-gradient(circle at 50% 50%,#174c35 0%,#0d3526 48%,#08251a 100%);
+    border:10px solid #29200f;
+    box-shadow:inset 0 0 0 2px rgba(255,213,119,.18),inset 0 0 55px rgba(0,0,0,.55),0 25px 60px rgba(0,0,0,.45);
+}
+.blackjack-table:before { content:""; position:absolute; inset:18px; border:1px solid rgba(235,202,119,.15); border-radius:20px; pointer-events:none; }
+.table-light { position:absolute; width:260px; height:120px; left:50%; top:-45px; transform:translateX(-50%); background:radial-gradient(ellipse,rgba(255,244,192,.22),transparent 70%); filter:blur(8px); pointer-events:none; }
+.dealer-area,.player-area { position:relative; z-index:2; }
+.dealer-area { min-height:180px; }
+.player-area { min-height:180px; }
+.hand-heading { display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:13px; text-shadow:0 2px 5px #000; }
+.hand-heading span { font-size:10px; letter-spacing:2.5px; color:rgba(255,255,255,.68); font-weight:900; }
+.hand-heading strong { min-width:28px; color:#f3d68b; font-size:15px; }
+.card-row { display:flex; justify-content:center; align-items:center; min-height:142px; padding:5px; }
+.table-divider { height:1px; margin:0 15px 7px; background:linear-gradient(90deg,transparent,rgba(236,205,127,.3),transparent); text-align:center; }
+.table-divider span { position:relative; top:-9px; padding:0 13px; background:#103725; color:rgba(240,211,135,.5); font-size:8px; letter-spacing:3px; font-weight:900; }
+.playing-card { position:relative; width:86px; height:124px; margin-left:-16px; border-radius:9px; flex:0 0 auto; background:linear-gradient(135deg,#fff,#e8e6df); border:1px solid #bdb9ae; color:#151515; box-shadow:0 12px 22px rgba(0,0,0,.42),inset 0 0 0 2px rgba(255,255,255,.65); transform:translateY(25px) rotate(var(--card-rot,0deg)); opacity:0; animation:cardDeal .55s cubic-bezier(.2,.9,.25,1) forwards; transform-origin:bottom center; }
+.playing-card:first-child { margin-left:0; }
+.playing-card.red { color:#b21e2b; }
+.playing-card .card-corner { position:absolute; top:7px; left:8px; display:flex; flex-direction:column; align-items:center; line-height:.9; font-weight:900; }
+.playing-card .card-corner.bottom { top:auto; left:auto; right:8px; bottom:7px; transform:rotate(180deg); }
+.playing-card .rank { font-size:18px; }
+.playing-card .suit { font-size:13px; }
+.playing-card .card-center { position:absolute; inset:26px 10px; display:flex; align-items:center; justify-content:center; font-size:54px; opacity:.92; }
+.playing-card.face-card .card-center { font-size:42px; font-weight:900; border:2px solid currentColor; border-radius:50%; margin:28px 14px; }
+.playing-card.hidden-card { background:repeating-linear-gradient(45deg,#7d1521 0 5px,#a8202e 5px 10px); border-color:#d4af67; box-shadow:0 12px 22px rgba(0,0,0,.5),inset 0 0 0 5px #78131e,inset 0 0 0 7px #e0c071; }
+.playing-card.hidden-card:after { content:"♛"; position:absolute; inset:20px; display:flex; align-items:center; justify-content:center; color:#e9cf86; font-size:42px; text-shadow:0 2px 3px #4b0c13; border:1px solid rgba(255,220,130,.35); }
+@keyframes cardDeal { 0%{opacity:0;transform:translate(170px,-80px) rotate(18deg) scale(.7)} 70%{opacity:1;transform:translateY(-5px) rotate(var(--card-rot,0deg)) scale(1.04)} 100%{opacity:1;transform:translateY(0) rotate(var(--card-rot,0deg)) scale(1)} }
+.playing-card.card-flip { animation:cardFlip .55s ease forwards; }
+@keyframes cardFlip { 0%{transform:rotateY(0) rotate(var(--card-rot,0deg))} 48%{transform:rotateY(90deg) rotate(var(--card-rot,0deg))} 100%{transform:rotateY(0) rotate(var(--card-rot,0deg))} }
+.blackjack-status { min-height:25px; text-align:center; margin:8px 0 12px; color:#c4cad3; font-weight:800; }
+.blackjack-status.win { color:#75e0a0; animation:resultPop .45s ease; }
+.blackjack-status.loss { color:#f17b7b; animation:resultPop .45s ease; }
+@keyframes resultPop { 0%{transform:scale(.92);opacity:.3} 100%{transform:scale(1);opacity:1} }
+.blackjack-actions { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:8px; }
+.secondary-game-button { margin-top:16px; padding:14px 10px; border:1px solid rgba(255,255,255,.13); border-radius:14px; cursor:pointer; font-weight:900; letter-spacing:1px; color:#e7eaf0; background:linear-gradient(145deg,#181c24,#0e1117); transition:.18s; }
+.secondary-game-button:hover:not(:disabled) { transform:translateY(-2px); border-color:rgba(236,204,121,.55); }
+.secondary-game-button:disabled { opacity:.35; cursor:not-allowed; }
+@media(max-width:650px){
+  .blackjack-table { min-height:390px; padding:22px 12px; border-width:7px; }
+  .playing-card { width:67px; height:99px; margin-left:-20px; }
+  .playing-card .card-center { font-size:42px; }
+  .playing-card .rank { font-size:15px; }
+  .blackjack-actions { grid-template-columns:1fr 1fr; }
+}

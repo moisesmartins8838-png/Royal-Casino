@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Royal Casino - Simulador</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     LOGIN
+================================================== -->
+
+<div id="loginScreen" class="login-screen">
+
+    <div class="login-box">
+
+        <div class="login-logo">
+            ROYAL
+            <span>CASINO</span>
+        </div>
+
+        <p class="simulation-label">
+            SIMULADOR EDUCACIONAL
+        </p>
+
+
+        <div id="loginForm">
+
+            <h2>
+                Entrar na conta
+            </h2>
+
+            <label>
+                Usuário
+            </label>
+
+            <input
+                type="text"
+                id="loginUsername"
+                placeholder="Digite seu usuário"
+            >
+
+
+            <label>
+                Senha
+            </label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Digite sua senha"
+            >
+
+
+            <button id="loginButton">
+                ENTRAR
+            </button>
+
+
+            <p id="loginError" class="login-error"></p>
+
+
+            <p class="register-text">
+
+                Ainda não possui conta?
+
+                <button id="showRegister">
+                    Criar conta
+                </button>
+
+            </p>
+
+        </div>
+
+
+        <!-- CADASTRO -->
+
+        <div
+            id="registerForm"
+            class="hidden"
+        >
+
+            <h2>
+                Criar conta
+            </h2>
+
+
+            <label>
+                Usuário
+            </label>
+
+            <input
+                type="text"
+                id="registerUsername"
+                placeholder="Escolha um usuário"
+            >
+
+
+            <label>
+                Nome de exibição
+            </label>
+
+            <input
+                type="text"
+                id="registerName"
+                placeholder="Ex.: Marcos"
+                maxlength="30"
+            >
+
+
+            <label>
+                Foto de perfil <small>(opcional)</small>
+            </label>
+
+            <input
+                type="file"
+                id="registerPhoto"
+                accept="image/png,image/jpeg,image/webp"
+            >
+
+            <div id="registerPhotoPreview" class="profile-preview hidden">
+                <img id="registerPhotoPreviewImg" alt="Prévia da foto de perfil">
+            </div>
+
+
+            <label>
+                Senha
+            </label>
+
+            <input
+                type="password"
+                id="registerPassword"
+                placeholder="Escolha uma senha"
+            >
+
+
+            <button id="registerButton">
+                CRIAR CONTA
+            </button>
+
+
+            <p
+                id="registerError"
+                class="login-error"
+            ></p>
+
+
+            <p class="register-text">
+
+                Já possui uma conta?
+
+                <button id="showLogin">
+                    Voltar para login
+                </button>
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     TELA INICIAL
+================================================== -->
+
+<div
+    id="home"
+    class="casino-home hidden"
+>
+
+
+    <!-- FICHAS -->
+
+    <div id="chips-container"></div>
+
+
+    <!-- CONTEÚDO -->
+
+    <div class="hero">
+
+
+        <div class="online">
+            ONLINE
+        </div>
+
+
+        <h1>
+            CASSINO
+        </h1>
+
+
+        <div class="linha"></div>
+
+
+        <div class="play-wrapper">
+
+
+            <button id="playButton">
+                JOGAR
+            </button>
+
+
+            <div class="age-warning">
+
+                ⚠️ Certifique-se de ser maior
+                de 18 anos.
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ==================================================
+     CASSINO
+================================================== -->
+
+<div
+    id="game"
+    class="game-screen"
+>
+
+
+    <header class="game-header">
+
+
+        <div class="logo">
+
+            ROYAL
+
+            <span>
+                CASINO
+            </span>
+
+        </div>
+
+
+        <div class="profile-area">
+            <img id="casinoProfilePhoto" class="profile-avatar" alt="Foto de perfil">
+            <div class="profile-info">
+                <span>Olá,</span>
+                <strong id="casinoProfileName">Jogador</strong>
+            </div>
+        </div>
+
+
+        <!-- SALDO CLICÁVEL -->
+
+        <button
+            id="balanceButton"
+            class="balance"
+        >
+
+            <span>
+                Saldo
+            </span>
+
+            <strong id="casinoBalance">
+                R$ 0,00
+            </strong>
+
+        </button>
+
+
+        <button
+            id="logoutButton"
+            class="logout-button"
+        >
+            Sair
+        </button>
+
+
+    </header>
+
+
+
+    <main class="games">
+
+
+        <h2>
+            ESCOLHA SEU JOGO
+        </h2>
+
+
+        <div class="game-grid">
+
+
+            <button class="game-card" id="rouletteGameButton">
+
+                <span>
+                    🎰
+                </span>
+
+                <strong>
+                    ROLETA
+                </strong>
+
+                <small>
+                    Simulador
+                </small>
+
+            </button>
+
+
+            <button class="game-card" id="blackjackGameButton">
+
+                <span>
+                    🃏
+                </span>
+
+                <strong>
+                    CARTAS
+                </strong>
+
+                <small>
+                    Simulador
+                </small>
+
+            </button>
+
+
+            <button class="game-card">
+
+                <span>
+                    🎯
+                </span>
+
+                <strong>
+                    ADIVINHAÇÃO
+                </strong>
+
+                <small>
+                    Simulador
+                </small>
+
+            </button>
+
+
+            <button class="game-card" id="diceGameButton">
+
+                <span>
+                    🎲
+                </span>
+
+                <strong>
+                    DADOS
+                </strong>
+
+                <small>
+                    Simulador
+                </small>
+
+            </button>
+
+
+        </div>
+
+
+    </main>
+
+
+    <button
+        id="backButton"
+        class="back-button"
+    >
+
+        ← Voltar
+
+    </button>
+
+
+</div>
+
+
+
+
+<!-- ==================================================
+     JOGO DE DADOS 3D
+================================================== -->
+
+<div id="diceModal" class="game-modal-overlay">
+    <div class="casino-game-window dice-window">
+        <button id="closeDice" class="close-button" type="button">×</button>
+
+        <div class="game-modal-title">
+            <span class="game-modal-icon">🎲</span>
+            <div>
+                <strong>DADOS 3D</strong>
+                <small>Escolha sua aposta e o resultado</small>
+            </div>
+        </div>
+
+        <div class="dice-stage" id="diceStage">
+            <div class="dice-scene">
+                <div class="dice-cube" id="diceCube">
+                    <div class="dice-face dice-front"><span>1</span></div>
+                    <div class="dice-face dice-back"><span>6</span></div>
+                    <div class="dice-face dice-right"><span>3</span></div>
+                    <div class="dice-face dice-left"><span>4</span></div>
+                    <div class="dice-face dice-top"><span>2</span></div>
+                    <div class="dice-face dice-bottom"><span>5</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dice-choice-title">ESCOLHA O RESULTADO</div>
+        <div class="dice-choice-grid dice-number-grid">
+            <button class="dice-choice" data-choice="number-1" type="button">1</button>
+            <button class="dice-choice" data-choice="number-2" type="button">2</button>
+            <button class="dice-choice" data-choice="number-3" type="button">3</button>
+            <button class="dice-choice" data-choice="number-4" type="button">4</button>
+            <button class="dice-choice" data-choice="number-5" type="button">5</button>
+            <button class="dice-choice" data-choice="number-6" type="button">6</button>
+        </div>
+        <div class="dice-choice-grid dice-parity-grid">
+            <button class="dice-choice" data-choice="even" type="button">PAR</button>
+            <button class="dice-choice" data-choice="odd" type="button">ÍMPAR</button>
+        </div>
+
+        <div class="bet-label">VALOR DA APOSTA</div>
+        <div class="bet-options" id="diceBetOptions">
+            <button class="bet-option" data-bet="10" type="button">R$ 10</button>
+            <button class="bet-option" data-bet="25" type="button">R$ 25</button>
+            <button class="bet-option" data-bet="50" type="button">R$ 50</button>
+            <button class="bet-option" data-bet="100" type="button">R$ 100</button>
+            <button class="bet-option" data-bet="250" type="button">R$ 250</button>
+        </div>
+
+        <button id="rollDiceButton" class="primary-game-button" type="button">LANÇAR DADO</button>
+        <div id="diceResult" class="game-result-message">Escolha par ou ímpar e uma aposta.</div>
+    </div>
+</div>
+
+<!-- ==================================================
+     ROLETA SIMPLES
+================================================== -->
+
+<div id="rouletteModal" class="game-modal-overlay">
+    <div class="casino-game-window roulette-window">
+        <button id="closeRoulette" class="close-button" type="button">×</button>
+
+        <div class="game-modal-title">
+            <span class="game-modal-icon">🎰</span>
+            <div>
+                <strong>ROLETA</strong>
+                <small>Vermelho, preto ou verde</small>
+            </div>
+        </div>
+
+        <div class="roulette-stage">
+            <div class="roulette-pointer" aria-hidden="true">▼</div>
+            <div class="roulette-wheel" id="rouletteWheel">
+                <div class="roulette-inner">
+                    <div class="roulette-center">ROYAL</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="roulette-info">
+            <span>⚫ PRETO PAGA <strong>3x</strong></span>
+            <span>🔴 VERMELHO PAGA <strong>1,5x</strong></span>
+            <span>🟢 VERDE <strong>0x</strong></span>
+        </div>
+
+        <div class="bet-label">ESCOLHA A COR</div>
+        <div class="roulette-choice-grid">
+            <button class="roulette-choice black" data-color="black" type="button">⚫ PRETO <small>3x</small></button>
+            <button class="roulette-choice red" data-color="red" type="button">🔴 VERMELHO <small>1,5x</small></button>
+            <button class="roulette-choice green" data-color="green" type="button">🟢 VERDE <small>0x</small></button>
+        </div>
+
+        <div class="bet-label">VALOR DA APOSTA</div>
+        <div class="bet-options" id="rouletteBetOptions">
+            <button class="bet-option" data-bet="10" type="button">R$ 10</button>
+            <button class="bet-option" data-bet="25" type="button">R$ 25</button>
+            <button class="bet-option" data-bet="50" type="button">R$ 50</button>
+            <button class="bet-option" data-bet="100" type="button">R$ 100</button>
+            <button class="bet-option" data-bet="250" type="button">R$ 250</button>
+        </div>
+
+        <button id="spinRouletteButton" class="primary-game-button" type="button">GIRAR ROLETA</button>
+        <div id="rouletteResult" class="game-result-message">Escolha uma cor e uma aposta.</div>
+    </div>
+</div>
+
+<!-- ==================================================
+     BLACKJACK / 21
+================================================== -->
+<div id="blackjackModal" class="game-modal-overlay">
+    <div class="casino-game-window blackjack-window">
+        <button id="closeBlackjack" class="close-button" type="button">×</button>
+
+        <div class="game-modal-title">
+            <span class="game-modal-icon">🃏</span>
+            <div>
+                <strong>BLACKJACK 21</strong>
+                <small>Chegue o mais perto possível de 21</small>
+            </div>
+        </div>
+
+        <div class="blackjack-table" id="blackjackTable">
+            <div class="table-light"></div>
+            <div class="dealer-area">
+                <div class="hand-heading"><span>DEALER</span><strong id="dealerScore">—</strong></div>
+                <div class="card-row" id="dealerCards"></div>
+            </div>
+
+            <div class="table-divider"><span>ROYAL 21</span></div>
+
+            <div class="player-area">
+                <div class="hand-heading"><span>VOCÊ</span><strong id="playerScore">—</strong></div>
+                <div class="card-row" id="playerCards"></div>
+            </div>
+        </div>
+
+        <div class="blackjack-status" id="blackjackStatus">Escolha sua aposta para começar uma rodada.</div>
+
+        <div class="bet-label">VALOR DA APOSTA</div>
+        <div class="bet-options" id="blackjackBetOptions">
+            <button class="bet-option" data-bet="10" type="button">R$ 10</button>
+            <button class="bet-option" data-bet="25" type="button">R$ 25</button>
+            <button class="bet-option" data-bet="50" type="button">R$ 50</button>
+            <button class="bet-option" data-bet="100" type="button">R$ 100</button>
+            <button class="bet-option" data-bet="250" type="button">R$ 250</button>
+        </div>
+
+        <div class="blackjack-actions">
+            <button id="dealBlackjack" class="primary-game-button" type="button">DISTRIBUIR CARTAS</button>
+            <button id="hitBlackjack" class="secondary-game-button" type="button" disabled>COMPRAR</button>
+            <button id="standBlackjack" class="secondary-game-button" type="button" disabled>PARAR</button>
+            <button id="doubleBlackjack" class="secondary-game-button" type="button" disabled>DOBRAR</button>
+        </div>
+    </div>
+</div>
+
+<!-- ==================================================
+     BANCO SIMULADO
+================================================== -->
+
+<div
+    id="bankModal"
+    class="modal-overlay"
+>
+
+
+    <div class="bank-window">
+
+
+        <button
+            id="closeBank"
+            class="close-button"
+        >
+            ×
+        </button>
+
+
+        <div class="bank-title">
+
+            <span>
+                🏦
+            </span>
+
+            <div>
+
+                <strong>
+                    BLOCKBANK
+                </strong>
+
+                <small>
+                    BANCO SIMULADO
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="bank-user">
+            <img id="bankProfilePhoto" class="bank-avatar" alt="Foto de perfil">
+            <div>
+                <small>CLIENTE</small>
+                <strong id="bankProfileName">Jogador</strong>
+            </div>
+        </div>
+
+
+        <!-- CARTÃO -->
+
+        <div class="bank-card">
+
+
+            <div class="bank-card-top">
+
+                <span>
+                    BLOCKBANK
+                </span>
+
+                <span>
+                    SIMULAÇÃO
+                </span>
+
+            </div>
+
+
+            <div class="bank-card-chip">
+                ◉
+            </div>
+
+
+            <p class="bank-card-number">
+                •••• •••• •••• 2180
+            </p>
+
+
+            <strong id="bankCardBalance">
+                R$ 2.000,00
+            </strong>
+
+
+            <div class="bank-card-bottom">
+
+                <span>
+                    CONTA DEMONSTRATIVA
+                </span>
+
+                <span>
+                    2026
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SALDOS -->
+
+        <div class="bank-balances">
+
+
+            <div>
+
+                <small>
+                    Saldo bancário
+                </small>
+
+                <strong id="bankBalance">
+                    R$ 2.000,00
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <small>
+                    Saldo no cassino
+                </small>
+
+                <strong id="bankCasinoBalance">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- DEPÓSITO DO CASSINO PARA O BANCO -->
+
+        <div class="deposit-section deposit-highlight">
+
+            <div class="deposit-heading">
+                <div class="deposit-icon">↗</div>
+                <div>
+                    <h3>Depositar no BlockBank</h3>
+                    <p>Retire saldo do cassino e envie para o seu banco simulado.</p>
+                </div>
+            </div>
+
+            <div class="deposit-rule">
+                <strong>Mínimo: R$ 500,00</strong>
+                <span>Valores abaixo de R$ 500 não são permitidos.</span>
+            </div>
+
+            <div class="deposit-controls">
+                <input
+                    id="casinoDepositAmount"
+                    class="deposit-input"
+                    type="number"
+                    min="500"
+                    step="50"
+                    placeholder="Ex.: 500, 1000, 1500"
+                >
+
+                <button
+                    id="casinoDepositButton"
+                    class="transfer-button deposit-button"
+                    type="button"
+                >
+                    DEPOSITAR NO BANCO
+                </button>
+            </div>
+
+            <p id="casinoDepositMessage" class="transfer-message"></p>
+
+        </div>
+
+
+        <!-- TRANSFERÊNCIA BANCO -> CASSINO -->
+
+        <div class="transfer-section">
+
+
+            <h3>
+                Transferir para Royal Casino
+            </h3>
+
+
+            <p>
+                Escolha o valor da transferência
+                da sua conta simulada.
+            </p>
+
+
+            <div class="amount-buttons">
+
+
+                <button
+                    class="amount-button"
+                    data-amount="100"
+                >
+                    R$ 100
+                </button>
+
+
+                <button
+                    class="amount-button"
+                    data-amount="500"
+                >
+                    R$ 500
+                </button>
+
+
+                <button
+                    class="amount-button"
+                    data-amount="1000"
+                >
+                    R$ 1.000
+                </button>
+
+
+            </div>
+
+
+            <button
+                id="transferButton"
+                class="transfer-button"
+            >
+
+                TRANSFERIR
+
+            </button>
+
+
+            <p
+                id="transferMessage"
+                class="transfer-message"
+            ></p>
+
+
+        </div>
+
+
+
+        <!-- HISTÓRICO -->
+
+        <div class="history">
+
+            <h3>
+                Últimas transferências
+            </h3>
+
+
+            <div id="historyList">
+
+                <p class="empty-history">
+                    Nenhuma transferência realizada.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     PAINEL ADMINISTRATIVO — SIMULAÇÃO
+================================================== -->
+<div id="adminPanel" class="admin-panel">
+    <header class="admin-header">
+        <div>
+            <div class="admin-kicker">ROYAL CASINO · ADMIN</div>
+            <h1>Massa_Galo</h1>
+            <p>PAINEL DE CONTROLE · SIMULAÇÃO EDUCACIONAL</p>
+        </div>
+        <button id="adminLogoutButton" class="admin-logout">Sair</button>
+    </header>
+
+    <main class="admin-content">
+        <section class="admin-balance-card">
+            <span>Saldo administrativo simulado</span>
+            <strong id="adminBalance">R$ 0,00</strong>
+            <small>Comissões fictícias acumuladas pelas perdas dos jogadores.</small>
+        </section>
+
+        <section class="admin-stats-grid">
+            <div class="admin-stat"><span>Jogadores</span><strong id="adminPlayers">0</strong></div>
+            <div class="admin-stat"><span>Total apostado</span><strong id="adminTotalBets">R$ 0,00</strong></div>
+            <div class="admin-stat"><span>Total perdido</span><strong id="adminTotalLosses">R$ 0,00</strong></div>
+            <div class="admin-stat"><span>Comissão acumulada</span><strong id="adminCommission">R$ 0,00</strong></div>
+        </section>
+
+        <section class="admin-section">
+            <div class="admin-section-title">
+                <div><span>REGRAS DA SIMULAÇÃO</span><h2>Comissão administrativa</h2></div>
+                <strong id="adminCommissionRate">5%</strong>
+            </div>
+            <p>Quando um jogador perde uma aposta, somente a porcentagem configurada acima é registrada na conta administrativa fictícia.</p>
+        </section>
+
+        <section class="admin-section">
+            <div class="admin-section-title"><div><span>MONITORAMENTO</span><h2>Últimas perdas</h2></div></div>
+            <div id="adminTransactionList" class="admin-transactions"></div>
+        </section>
+
+        <div class="admin-warning">SIMULAÇÃO EDUCACIONAL — NENHUM VALOR REAL É MOVIMENTADO.</div>
+    </main>
+</div>
+
+
+<!-- ==================================================
+     COMPROVANTE
+================================================== -->
+
+<div
+    id="receiptModal"
+    class="modal-overlay"
+>
+
+
+    <div class="receipt">
+
+
+        <button
+            id="closeReceipt"
+            class="close-button"
+        >
+            ×
+        </button>
+
+
+        <div class="receipt-icon">
+            ✓
+        </div>
+
+
+        <h2>
+            Transferência concluída
+        </h2>
+
+
+        <p class="receipt-subtitle">
+            Operação realizada com sucesso
+        </p>
+
+
+        <div class="receipt-line">
+
+            <span>
+                Valor
+            </span>
+
+            <strong id="receiptAmount">
+                R$ 500,00
+            </strong>
+
+        </div>
+
+
+        <div class="receipt-line">
+
+            <span>
+                Origem
+            </span>
+
+            <strong>
+                BlockBank
+            </strong>
+
+        </div>
+
+
+        <div class="receipt-line">
+
+            <span>
+                Destino
+            </span>
+
+            <strong>
+                Royal Casino
+            </strong>
+
+        </div>
+
+
+        <div class="receipt-line">
+
+            <span>
+                ID da transação
+            </span>
+
+            <strong id="receiptId">
+                RC-000000
+            </strong>
+
+        </div>
+
+
+        <div class="receipt-line">
+
+            <span>
+                Status
+            </span>
+
+            <strong class="status-ok">
+                CONCLUÍDO
+            </strong>
+
+        </div>
+
+
+        <div class="simulation-warning">
+
+            SIMULAÇÃO EDUCACIONAL —
+            SEM VALOR FINANCEIRO
+
+        </div>
+
+
+        <button
+            id="closeReceiptButton"
+            class="transfer-button"
+        >
+
+            CONCLUIR
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
